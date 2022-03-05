@@ -36,7 +36,7 @@ class RecipeManager(models.Manager):
 
 class Recipe(models.Model):
     objects = RecipeManager()
-    title = models.CharField(max_length=65, verbose_name=_('Title'))
+    title = models.CharField(max_length=65, verbose_name=_('Nome'))
     description = models.CharField(max_length=165)
     slug = models.SlugField(unique=True)
     preparation_time = models.IntegerField()
@@ -109,12 +109,12 @@ class Recipe(models.Model):
         if recipe_from_db:
             if recipe_from_db.pk != self.pk:
                 error_messages['title'].append(
-                    'Found recipes with the same title'
+                    'Encontrado datalogger com o mesmo nome'
                 )
 
         if error_messages:
             raise ValidationError(error_messages)
 
     class Meta:
-        verbose_name = _('Recipe')
-        verbose_name_plural = _('Recipes')
+        verbose_name = _('Datalogger')
+        verbose_name_plural = _('Dataloggers')

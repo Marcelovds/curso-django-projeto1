@@ -29,7 +29,7 @@ def register_create(request):
         user = form.save(commit=False)
         user.set_password(user.password)
         user.save()
-        messages.success(request, 'Your user is created, please log in.')
+        messages.success(request, 'Usuário criado, por favor faça o log in.')
 
         del(request.session['register_form_data'])
         return redirect(reverse('authors:login'))
@@ -58,12 +58,12 @@ def login_create(request):
         )
 
         if authenticated_user is not None:
-            messages.success(request, 'Your are logged in.')
+            messages.success(request, 'Logged in com sucesso.')
             login(request, authenticated_user)
         else:
-            messages.error(request, 'Invalid credentials')
+            messages.error(request, 'Credenciais Invalidas')
     else:
-        messages.error(request, 'Invalid username or password')
+        messages.error(request, 'Usuário ou senha inválido')
 
     return redirect(reverse('authors:dashboard'))
 
@@ -78,7 +78,7 @@ def logout_view(request):
         messages.error(request, 'Invalid logout user')
         return redirect(reverse('authors:login'))
 
-    messages.success(request, 'Logged out successfully')
+    messages.success(request, 'Logged out com sucesso')
     logout(request)
     return redirect(reverse('authors:login'))
 

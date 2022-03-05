@@ -1,6 +1,6 @@
 {% extends 'global/base.html' %}
 
-{% block title %}Dashboard ({{ user }}) | {% endblock title %}
+{% block title %} Dashboard ({{ user }}) | {% endblock title %}
 
 {% block content %}
   <div class="main-content center container">
@@ -10,7 +10,7 @@
     {% include 'global/partials/messages.html' %}
 
     <div class="authors-dashboard-container">
-      <h3>Your recipes</h3>
+      <h3>Dataloggers</h3>
 
       <ul>
         {% for recipe in recipes %}
@@ -28,7 +28,7 @@
           </li>
         {% empty %}
           <li>
-            <p>You do not have recipes, please create one.</p>
+            <p>Nenhum registro encontrado, crie um.</p>
           </li>
         {% endfor %}
       </ul>
