@@ -2,7 +2,7 @@
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 from . import BASE_DIR
 
-LANGUAGE_CODE = 'pt-br'
+LANGUAGE_CODE = 'pt-BR'
 
 TIME_ZONE = 'America/Sao_Paulo'
 
