@@ -36,20 +36,23 @@ class RecipeManager(models.Manager):
 
 class Recipe(models.Model):
     objects = RecipeManager()
-    title = models.CharField(max_length=65, verbose_name=_('Nome'))
+    title = models.CharField(max_length=65, verbose_name=_('Serial'))
     description = models.CharField(max_length=165)
     slug = models.SlugField(unique=True)
-    preparation_time = models.IntegerField()
-    preparation_time_unit = models.CharField(max_length=65)
-    servings = models.IntegerField()
-    servings_unit = models.CharField(max_length=65)
-    preparation_steps = models.TextField()
+    # preparation_time = models.IntegerField()
+    # preparation_time_unit = models.CharField(max_length=65)
+    # servings = models.IntegerField()
+    contract = models.CharField(max_length=15)
+    model_type = models.CharField(max_length=15)
+    is_active = models.CharField(max_length=65)
+    local_address = models.CharField(max_length=65)
+    observations = models.TextField()
     preparation_steps_is_html = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     is_published = models.BooleanField(default=False)
-    cover = models.ImageField(
-        upload_to='recipes/covers/%Y/%m/%d/', blank=True, default='')
+    foto = models.ImageField(
+        upload_to='recipes/fotos/%Y/%m/%d/', blank=True, default='')
     category = models.ForeignKey(
         Category, on_delete=models.SET_NULL, null=True, blank=True,
         default=None,
@@ -91,9 +94,9 @@ class Recipe(models.Model):
 
         saved = super().save(*args, **kwargs)
 
-        if self.cover:
+        if self.foto:
             try:
-                self.resize_image(self.cover, 840)
+                self.resize_image(self.foto, 840)
             except FileNotFoundError:
                 ...
 

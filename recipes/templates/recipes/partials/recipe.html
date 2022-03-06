@@ -1,10 +1,10 @@
 {% load i18n %}
 
 <div class="recipe recipe-list-item">
-    {% if recipe.cover %}
-        <div class="recipe-cover">
+    {% if recipe.foto %}
+        <div class="recipe-foto">
             <a href="{{ recipe.get_absolute_url }}">
-                <img src="{{ recipe.cover.url }}" alt="Temporário">
+                <img src="{{ recipe.foto.url }}" alt="Temporário">
             </a>
         </div>
     {% endif %}
