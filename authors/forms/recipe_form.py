@@ -13,30 +13,31 @@ class AuthorRecipeForm(forms.ModelForm):
 
         self._my_errors = defaultdict(list)
 
-        add_attr(self.fields.get('preparation_steps'), 'class', 'span-2')
+        add_attr(self.fields.get('observations'), 'class', 'span-2')
 
     class Meta:
         model = Recipe
-        fields = 'title', 'description', 'preparation_time', \
-            'preparation_time_unit', 'servings', 'servings_unit', \
-            'preparation_steps', 'cover'
+        fields = 'title', 'description', 'contract', \
+            'local_address', 'model_type', 'is_active', \
+            'observations', 'foto'
         widgets = {
-            'cover': forms.FileInput(
+            'foto': forms.FileInput(
                 attrs={
                     'class': 'span-2'
                 }
             ),
-            'servings_unit': forms.Select(
+            'is_active': forms.Select(
                 choices=(
-                    ('Pressão', 'Pressão'),
-                    ('Vazão', 'Vazão'),
-                    ('Serial', 'Serial'),
+                    ('Ativo', 'Ativo'),
+                    ('Desativado', 'Desativado'),
+                    ('Em Reparo', 'Em Reparo'),
+                    ('Outro', 'Outro'),
                 ),
             ),
-            'preparation_time_unit': forms.Select(
+            'model_type': forms.Select(
                 choices=(
-                    ('Minutos', 'Minutos'),
-                    ('Horas', 'Horas'),
+                    ('Datalogger', 'Datalogger'),
+                    ('VRP', 'VRP'),
                 ),
             ),
         }
