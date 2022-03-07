@@ -9,4 +9,5 @@ INSTALLED_APPS = [
     'recipes',
     'authors',
     'tag',
+    'dataloggers'
 ]

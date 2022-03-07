@@ -1,5 +1,5 @@
 {
-  "editor.fontSize": 11,
+  "editor.fontSize": 13,
   "python.languageServer": "Pylance", // ms-python.vscode-pylance
   "python.testing.unittestEnabled": false, // ms-python.python
   "python.testing.pytestEnabled": true,
@@ -56,5 +56,6 @@
     "django-html": "html", // batisteo.vscode-django
     "javascript": "javascriptreact",
     "typescript": "typescriptreact"
-  }
+  },
+  "window.zoomLevel": 2
 }

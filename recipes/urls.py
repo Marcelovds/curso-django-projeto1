@@ -44,5 +44,10 @@ urlpatterns = [
         'recipes/theory/',
         views.theory,
         name='theory',
+    ),
+    path(
+        'dataloggers/sensores/',
+        views.sensores,
+        name='sensores',
     )
 ]

@@ -60,13 +60,17 @@
 
     <div class="recipe-meta-container">
         <div class="recipe-meta recipe-preparation">
-            <h3 class="recipe-meta-title"><i class="fas fa-stopwatch"></i> {% translate 'Preparation' %}</h3>
+            <h3 class="recipe-meta-title"><i class="fas fa-chart-line"></i> {% translate 'Última Leituras' %}</h3>
+            <h3>Pressão  32 mca</h3>
+            <h3>Vazão    -- kl/min</h3>
+            <h3>horário   07/03/22 17:05 GMT-3</h3>
+            
             <div class="recipe-meta-text">
                 {{ recipe.preparation_time }} {{ recipe.preparation_time_unit }}
             </div>
         </div>
         <div class="recipe-meta recipe-servings">
-            <h3 class="recipe-meta-title"><i class="fas fa-pizza-slice"></i> {% translate 'Servings' %}</h3>
+            <h3 class="recipe-meta-title"><i class="fas fa-map-pin"></i> {% translate 'Localização' %}</h3>
             <div class="recipe-meta-text">
                 {{ recipe.servings }} {{ recipe.servings_unit }}
             </div>
@@ -77,18 +81,34 @@
         <footer class="recipe-footer">
             <a class="recipe-read-more button button-dark button-full-width" href="{% url 'recipes:recipe' recipe.id %}">
                 <i class="fas fa-eye"></i>
-                <span>{% translate 'read more' %}...</span>
+                <span>{% translate 'Detalhes' %}...</span>
             </a>
         </footer>
     {% endif %}
 
     {% if is_detail_page is True %}
         <div class="preparation-steps">
-            {% if recipe.preparation_steps_is_html is True %}
-                {{ recipe.preparation_steps|safe }}
-            {% else %}
-                {{ recipe.preparation_steps|linebreaksbr }}
-            {% endif %}
+            <div class="row row-cols-auto">
+                <div class="row">
+                    <h1>Sensores</h1>
+
+                </div>
+                <div class="row row-cols-auto">
+                    <div class="card-wrapper col-sm-12 col-md-5 col-lg-4 col-xl-3">
+                        <div class="card" style="">
+                            <div class="card-header">
+                                {{ sensor.name }}
+                            </div>
+                            <div class="card-body">
+                                <p class="sensor-measure text-center"><i class="bi bi-graph-up"></i></p>
+                                <p class="sensor-measure text-center">
+                                    CARD
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             {% if recipe.tags.all %}
                 <p>

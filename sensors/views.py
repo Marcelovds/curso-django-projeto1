@@ -1,5 +1,3 @@
-# Create your views here.
-
 import csv
 import json
 import os.path
@@ -11,23 +9,22 @@ from django.http import Http404, HttpResponse, JsonResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 
-from dataloggers.models import Sensor
-from dataloggers.utils.fix_corrupted_files import fix_corrupted_file
-from dataloggers.utils.SensorDataPoint import SensorDataPoint
+from sensors.models import Sensor
+from sensors.utils.fix_corrupted_files import fix_corrupted_file
+from sensors.utils.SensorDataPoint import SensorDataPoint
 
 
-def dataloggers_view(request):
+def datalogger_view(request):
     all_dataloggers = Sensor.objects.order_by('-creation_date')
     for sensor in all_dataloggers:
         sensor.last_data = load_last_data(sensor)
     context = {
         'dataloggers': all_dataloggers
     }
-    return render(request, 'dataloggers/sensores.html', context)  # ok
+    return render(request, 'sensors/index.html', context)
 
 
 def sensor_detail(request, slug):
-
     try:
         sensor = Sensor.objects.get(slug=slug)
     except Sensor.DoesNotExist:
@@ -36,7 +33,7 @@ def sensor_detail(request, slug):
     context = {
         'sensor': sensor
     }
-    return render(request, 'dataloggers/sensores/' + sensor.type + '/detail.html', context)
+    return render(request, 'sensors/' + sensor.type + '/detail.html', context)
 
 
 # example POST body:

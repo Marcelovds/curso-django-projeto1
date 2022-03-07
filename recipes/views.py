@@ -33,6 +33,22 @@ def theory(request, *args, **kwargs):
     )
 
 
+def sensores(request, *args, **kwargs):
+    recipes = Recipe.objects.get_published()
+    number_of_recipes = recipes.aggregate(number=Count('id'))
+
+    context = {
+        'recipes': recipes,
+        'number_of_recipes': number_of_recipes['number']
+    }
+
+    return render(
+        request,
+        '/dataloggers/templates/dataloggers/sensores/sensores.html',
+        context=context
+    )
+
+
 class RecipeListViewBase(ListView):
     model = Recipe
     context_object_name = 'recipes'
@@ -196,11 +212,11 @@ class RecipeDetailAPI(RecipeDetail):
         recipe_dict['created_at'] = str(recipe.created_at)
         recipe_dict['updated_at'] = str(recipe.updated_at)
 
-        if recipe_dict.get('cover'):
-            recipe_dict['cover'] = self.request.build_absolute_uri() + \
-                recipe_dict['cover'].url[1:]
+        if recipe_dict.get('foto'):
+            recipe_dict['foto'] = self.request.build_absolute_uri() + \
+                recipe_dict['foto'].url[1:]
         else:
-            recipe_dict['cover'] = ''
+            recipe_dict['foto'] = ''
 
         del recipe_dict['is_published']
         del recipe_dict['preparation_steps_is_html']
